@@ -1,0 +1,146 @@
+
+    body {
+      background: #f4f6f8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .login-container {
+      background: #fff;
+      padding: 2rem 2.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      width: 320px;
+    }
+    .login-container h2 {
+      margin-bottom: 1.5rem;
+      text-align: center;
+      color: #333;
+    }
+    .login-container label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #555;
+    }
+    .login-container input[type="text"],
+    .login-container input[type="password"],.login-container input[type="email"] {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1.2rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+    .login-container select {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1.2rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+      background: #fff;
+    }
+    .login-container button {
+      width: 100%;
+      padding: 0.6rem;
+      background: #1976d2;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .login-container button:hover {
+      background: #1565c0;
+    }
+    .signup-btn {
+  background: none;
+  border: none;
+  color: #2b6cb0;
+  cursor: pointer;
+
+}
+.signup-text {
+  margin-bottom: 55px;
+  font-size: 14px;
+} 
+.signup-text span {
+  color: #555;
+}
+
+    body {
+      background: #f4f6f8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .login-container {
+      background: #fff;
+      padding: 2rem 2.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      width: 320px;
+    }
+    .login-container h2 {
+      margin-bottom: 1.5rem;
+      text-align: center;
+      color: #333;
+    }
+    .login-container label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #555;
+    }
+    .login-container input[type="text"],
+    .login-container input[type="password"],.login-container input[type="email"] {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1.2rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+    .login-container select {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1.2rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+      background: #fff;
+    }
+    .login-container button {
+      width: 100%;
+      padding: 0.6rem;
+      background: #1976d2;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .login-container button:hover {
+      background: #1565c0;
+    }
+    .signup-btn {
+  background: none;
+  border: none;
+  color: #2b6cb0;
+  cursor: pointer;
+
+}
+.bottom{
+    margin-left: 15px;
+    text-align: center;
+}
+
+ 
+ 
