@@ -1,6 +1,12 @@
 @if (auth.isLoggedIn()) {
-  <app-homepage></app-homepage>
+
+<app-navbar></app-navbar>
+@if(!isProfilePage()){
+<app-homepage></app-homepage>
+}
+<router-outlet></router-outlet>
+
 }
 @if(!auth.isLoggedIn()) {
-  <app-login-component></app-login-component>
+<app-login-component></app-login-component>
 }

@@ -1,12 +1,9 @@
 @if(isLoading){
-    <app-spinner></app-spinner>
+<app-spinner></app-spinner>
 }
 @else{
 <div class="body">
-    <div class="navbar">
-        <button onclick="editProfile()">Edit Profile</button>
-        <button onclick="logout()">Logout</button>
-    </div>
+
     <div class="form-container">
         <div class="cross">&#10013;</div>
         <div class="moses-title">MOSES</div>
@@ -14,24 +11,11 @@
         <form>
             <div class="form-field">
                 <label for="name">Name</label>
-                <input type="text" id="name" name="name" required />
+                <input type="text" id="name" [(ngModel)]="name" name="name" required />
             </div>
             <div class="form-field">
                 <label for="type">Select Type Of Kurbana</label>
 
-                <!-- <select name="role" id="role" [(ngModel)]="selectedChurch" required="">
-             <option value="">--Please choose Your parish--</option>
-              @if (loading) {
-    <option disabled>Loading churches...</option>
-  }
-   @if (error) {
-    <option disabled>{{ error }}</option>
-  }
-  @for (church of churches; track church.id) {
-     <option [value]="church.id">{{ church.name }}</option>
-  }
-
-        </select> -->
                 <select id="type" name="type" [(ngModel)]="selectedType" required>
                     <option value="">-- Please choose a type --</option>
                     @for (product of products; track product.id) {
@@ -39,17 +23,48 @@
                     }
                 </select>
             </div>
-            <button type="submit">Add</button>
+            <button (click)="addItem()" type="submit">Add</button>
+            @if(Myproducts.length > 0){
+
+            <button (click)="addItem()" class="pay" type="submit">Pay {{totalAmount}}</button>
+
+            }
+
         </form>
     </div>
     <!-- Card below the form -->
+    @for (product of Myproducts; track product.id) {
+
     <div class="card" id="userCard">
         <div class="card-content">
-            <div class="name">John Mathew</div>
-            <div class="role">Choir Leader</div>
+            <div class="info">
+                <div class="name">{{ product.name }}</div>
+                <div class="role">{{ product.product_name }}</div>
+            </div>
+
+            @if (editingProductId !== product.id ) {
+            <p class="price-line">
+                ₹{{ product.new_price || product.price }}
+                <span>
+                    <img (click)="editamount(product.id)" class="edit-icon" src="assets/edit.png" alt="Edit" />
+                </span>
+            </p>
+            }
+
+            @if (editingProductId === product.id ) {
+            <div class="edit-box">
+                <input type="number" id="amount-input" [(ngModel)]="contributionAmount" [min]="product.new_price"
+                    placeholder="Enter Amount" />
+
+                <button (click)="savenewamount(product)" class="save-btn">✓</button>
+            </div>
+            }
         </div>
-        <button class="delete-btn" onclick="deleteCard()">Delete</button>
+
+        <button class="delete-btn" (click)="ondeleteClick(product)">✖</button>
     </div>
+    }
+
 </div>
- 
+
 }

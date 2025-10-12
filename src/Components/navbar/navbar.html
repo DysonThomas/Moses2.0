@@ -1,0 +1,9 @@
+<div class="navbar">
+    @if(isProfilePage()){
+    <button (click)="backToHome()">Home Page</button>
+    }
+    @if(!isProfilePage()){
+    <button (click)="editProfile()">Edit Profile</button>
+    }
+    <button (click)="logout()">Logout</button>
+</div>

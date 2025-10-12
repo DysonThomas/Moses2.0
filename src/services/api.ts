@@ -29,6 +29,7 @@ export class Api {
     return this.http.post(this.apiUrl + 'login', credentials, { headers });
   }
   getProfile(token: string, user_id: string): Observable<any> {
+    console.log('Fetching profile for user_id:', user_id);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
@@ -37,7 +38,6 @@ export class Api {
   }
   // Get prices of products of each church by church id and pass token
   getProductsByChurchId(token: string, church_id: string): Observable<any> {
-    console.log('Fetching products for church_id:', church_id);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,

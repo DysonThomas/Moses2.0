@@ -1,58 +1,57 @@
-
-    <body>
-         @if(!newUser){
+<body>
+    @if(!newUser){
     <div class="login-container">
         <h2>Moses - Login</h2>
         <form>
-        <label for="username">Email</label>
-        <input type="text"  [(ngModel)]="email" id="username"  name="username" required>
+            <label for="username">Email</label>
+            <input type="text" [(ngModel)]="email" id="username" name="username" required>
 
-        <label for="password">Password</label>
-        <input type="password"  [(ngModel)]="password" id="password" name="password" required>
-           <div class="bottom">
-        <button (click)="login()" type="submit">Login</button>
-        <p class="signup-text">
-            Don't have an account?
-        <button type="button" (click)="isNewUser()" class="signup-btn">Sign Up</button>
-        </p>
-        </div>
+            <label for="password">Password</label>
+            <input type="password" [(ngModel)]="password" id="password" name="password" required>
+            <div class="bottom">
+                <button (click)="login()" type="submit">Login</button>
+                <p class="signup-text">
+                    Don't have an account?
+                    <button type="button" (click)="isNewUser()" class="signup-btn">Sign Up</button>
+                </p>
+            </div>
         </form>
     </div>
-}
+    }
     @if(newUser){
     <div class="login-container">
-            <h2>Moses - Signup</h2>
+        <h2>Moses - Signup</h2>
         <form>
-        <label for="username">Full Name</label>
-        <input type="text" [(ngModel)]="SFullname" id="username" name="username" required>
-                <label for="email">Email</label>  
-        <input type="email" [(ngModel)]="SEmail" id="email" name="email" required>
-        <label for="password">Password</label>
-        <input type="password" [(ngModel)]="SPassword" id="password" name="password" required>
-        <div class="bottom">
-        <label for="role">Select Your Parish</label>
-        <select name="role" id="role" [(ngModel)]="selectedChurch" required="">
-             <option value="">--Please choose Your parish--</option>
-              @if (loading) {
-    <option disabled>Loading churches...</option>
-  }
-   @if (error) {
-    <option disabled>{{ error }}</option>
-  }
-  @for (church of churches; track church.church_id) {
-     <option [value]="church.church_id">{{ church.name }}</option>
-  }
+            <label for="username">Full Name</label>
+            <input type="text" [(ngModel)]="SFullname" id="username" name="username" required>
+            <label for="email">Email</label>
+            <input type="email" [(ngModel)]="SEmail" id="email" name="email" required>
+            <label for="password">Password</label>
+            <input type="password" [(ngModel)]="SPassword" id="password" name="password" required>
+            <div class="bottom">
+                <label for="role">Select Your Parish</label>
+                <select name="role" id="role" [(ngModel)]="selectedChurch" required="">
+                    <option value="">--Please choose Your parish--</option>
+                    @if (loading) {
+                    <option disabled>Loading churches...</option>
+                    }
+                    @if (error) {
+                    <option disabled>{{ error }}</option>
+                    }
+                    @for (church of churches; track church.church_id) {
+                    <option [value]="church.church_id">{{ church.name }}</option>
+                    }
 
-        </select>
-        <button (click)="signup()" type="submit">Sign Up</button>
-        <p class="signup-text">
-            Already have an account?
-        <button type="button" (click)="isNewUser()"   class="signup-btn">Login</button>
-        </p>
-        </div>
-      
+                </select>
+                <button (click)="signup()" type="submit">Sign Up</button>
+                <p class="signup-text">
+                    Already have an account?
+                    <button type="button" (click)="isNewUser()" class="signup-btn">Login</button>
+                </p>
+            </div>
+
         </form>
     </div>
     }
 
-    </body>
+</body>
