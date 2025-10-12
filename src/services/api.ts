@@ -28,4 +28,20 @@ export class Api {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post(this.apiUrl + 'login', credentials, { headers });
   }
+  getProfile(token: string, user_id: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.get(`${this.apiUrl}getauser/${user_id}`, { headers });
+  }
+  // Get prices of products of each church by church id and pass token
+  getProductsByChurchId(token: string, church_id: string): Observable<any> {
+    console.log('Fetching products for church_id:', church_id);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.get(`${this.apiUrl}getproductsbychurch/${church_id}`, { headers });
+  }
 }

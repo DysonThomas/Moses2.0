@@ -55,8 +55,10 @@ export class LoginComponent {
     }
     this.api.login({ email: this.email, password: this.password }).subscribe({
       next: (data) => {
+        console.log('Login successful:', data);
         localStorage.setItem('token', data.token);
-
+        localStorage.setItem('userId', data.user.id);
+        localStorage.setItem('churchID', data.user.church_id);
         this.auth.isLoggedIn.set(true);
       },
       error: (error) => {

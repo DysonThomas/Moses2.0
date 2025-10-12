@@ -10,6 +10,12 @@ export class Auth {
     this.isLoggedIn.set(!!token);
     console.log('Auth initialized. isLoggedIn:', this.isLoggedIn());
   }
+  getToken(): string {
+    return localStorage.getItem('token') || '';
+  }
+  getUserId(): string {
+    return localStorage.getItem('userId') || '';
+  }
   login(token: string) {
     localStorage.setItem('token', token);
     this.isLoggedIn.set(true);

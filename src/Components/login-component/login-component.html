@@ -39,8 +39,8 @@
    @if (error) {
     <option disabled>{{ error }}</option>
   }
-  @for (church of churches; track church.id) {
-     <option [value]="church.id">{{ church.name }}</option>
+  @for (church of churches; track church.church_id) {
+     <option [value]="church.church_id">{{ church.name }}</option>
   }
 
         </select>

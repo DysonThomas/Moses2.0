@@ -1,1 +1,55 @@
-<p>homepage works!</p>
+@if(isLoading){
+    <app-spinner></app-spinner>
+}
+@else{
+<div class="body">
+    <div class="navbar">
+        <button onclick="editProfile()">Edit Profile</button>
+        <button onclick="logout()">Logout</button>
+    </div>
+    <div class="form-container">
+        <div class="cross">&#10013;</div>
+        <div class="moses-title">MOSES</div>
+        <div class="church-name">{{this.profileData.churchName }}</div>
+        <form>
+            <div class="form-field">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required />
+            </div>
+            <div class="form-field">
+                <label for="type">Select Type Of Kurbana</label>
+
+                <!-- <select name="role" id="role" [(ngModel)]="selectedChurch" required="">
+             <option value="">--Please choose Your parish--</option>
+              @if (loading) {
+    <option disabled>Loading churches...</option>
+  }
+   @if (error) {
+    <option disabled>{{ error }}</option>
+  }
+  @for (church of churches; track church.id) {
+     <option [value]="church.id">{{ church.name }}</option>
+  }
+
+        </select> -->
+                <select id="type" name="type" [(ngModel)]="selectedType" required>
+                    <option value="">-- Please choose a type --</option>
+                    @for (product of products; track product.id) {
+                    <option [value]="product.id">{{ product.product_name }} ₹{{product.price}}</option>
+                    }
+                </select>
+            </div>
+            <button type="submit">Add</button>
+        </form>
+    </div>
+    <!-- Card below the form -->
+    <div class="card" id="userCard">
+        <div class="card-content">
+            <div class="name">John Mathew</div>
+            <div class="role">Choir Leader</div>
+        </div>
+        <button class="delete-btn" onclick="deleteCard()">Delete</button>
+    </div>
+</div>
+ 
+}

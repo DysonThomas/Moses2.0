@@ -1,0 +1,127 @@
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f9f9f9;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            width: 100%;
+            background: #4B0082;
+            color: #fff;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 12px 32px;
+            box-sizing: border-box;
+        }
+        .navbar button {
+            background: #fff;
+            color: #4B0082;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 18px;
+            font-size: 15px;
+            margin-left: 16px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.2s, color 0.2s;
+        }
+        .navbar button:hover {
+            background: #e0d7f3;
+            color: #2d004d;
+        }
+        .form-container {
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 24px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            text-align: center;
+            background: #f9f9f9;
+        }
+        .cross {
+            font-size: 48px;
+            color: #4B0082;
+            margin-bottom: 8px;
+        }
+        .moses-title {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 4px;
+            letter-spacing: 2px;
+        }
+        .church-name {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 24px;
+        }
+        .form-field {
+            margin-bottom: 16px;
+            width: 100%;
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #bbb;
+            font-size: 16px;
+        }
+        button[type="submit"] {
+            padding: 10px 24px;
+            background: #4B0082;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background: #3a0066;
+        }
+        /* Card styles */
+        .card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 400px;
+            margin: 32px auto 0 auto;
+            padding: 16px 24px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            font-size: 18px;
+        }
+        .card .name {
+            font-weight: 600;
+            color: #333;
+        }
+        .card .role {
+            color: #4B0082;
+            font-weight: 500;
+        }
+        .card .delete-btn {
+            background: #e53935;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 6px 14px;
+            font-size: 14px;
+            margin-left: 16px;
+            cursor: pointer;
+        }
+        .card .delete-btn:hover {
+            background: #b71c1c;
+        }
+        .card-content {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            justify-content: space-between;
+        }
