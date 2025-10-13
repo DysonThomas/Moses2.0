@@ -1,9 +1,16 @@
 @if (auth.isLoggedIn()) {
-
 <app-navbar></app-navbar>
+@if (role===3 && !isProfilePage()) {
 @if(!isProfilePage()){
 <app-homepage></app-homepage>
 }
+}
+@if (role===2 && !isProfilePage()) {
+@if(!isProfilePage()){
+<app-churchhomepage> </app-churchhomepage>
+}
+}
+
 <router-outlet></router-outlet>
 
 }

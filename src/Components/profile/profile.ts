@@ -25,6 +25,15 @@ export class Profile {
         this.profileData = res;
         console.log('Profile data fetched:', this.profileData);
         this.getData = true;
+        this.api.getUserById(this.token, this.userId).subscribe({
+          next: (userRes) => {
+            console.log('User data fetched:', userRes);
+
+            this.profileData = userRes;
+            this.profileData.dob = userRes.dob ? userRes.dob.split('T')[0] : null;
+            console.log('Combined profile data:', this.profileData);
+          },
+        });
         this.api.getAllChurch().subscribe({
           next: (churchRes) => {
             const church = churchRes.find((c: any) => c.church_id === this.profileData.church_id);
@@ -48,5 +57,15 @@ export class Profile {
     delete this.profileData.email;
     delete this.profileData.password;
     console.log('Submitting profile data:', this.profileData);
+    this.api.updateProfile(this.token, this.profileData.user_ID, this.profileData).subscribe({
+      next: (res) => {
+        console.log('Profile updated successfully:', res);
+        alert('Profile updated successfully!');
+      },
+      error: (err) => {
+        console.error('Error updating profile:', err);
+        alert('Failed to update profile. Please try again.');
+      },
+    });
   }
 }

@@ -5,6 +5,7 @@ import { Injectable, signal } from '@angular/core';
 })
 export class Auth {
   isLoggedIn = signal(false);
+  private userData: any;
   constructor() {
     const token = localStorage.getItem('token');
     this.isLoggedIn.set(!!token);
@@ -19,6 +20,21 @@ export class Auth {
   login(token: string) {
     localStorage.setItem('token', token);
     this.isLoggedIn.set(true);
+  }
+  setUser(data: any) {
+    this.userData = data.role;
+    // localStorage.setItem('role', this.userData.role);
+    localStorage.setItem('user', this.userData);
+    // optional
+  }
+  getUser() {
+    if (!this.userData) {
+      this.userData = JSON.parse(localStorage.getItem('user') || '{}');
+    }
+    return this.userData;
+  }
+  getRole() {
+    return this.getUser().role;
   }
 
   logout() {

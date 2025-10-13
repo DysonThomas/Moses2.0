@@ -17,7 +17,6 @@ export class Homepage {
   selectedType: any;
   name: any;
   showEdittext: boolean = false;
-  showList: boolean = false;
   Myproducts: any[] = [];
   editingProductId: number | null = null;
   contributionAmount: number | null = null;
@@ -33,6 +32,8 @@ export class Homepage {
     this.api.getProfile(token, userId).subscribe({
       next: (res) => {
         this.profileData = res;
+        console.log('Profile data113:', this.profileData);
+
         this.api.getAllChurch().subscribe({
           next: (churchRes) => {
             const church = churchRes.find((c: any) => c.church_id === this.profileData.church_id);
@@ -92,7 +93,6 @@ export class Homepage {
     console.log('Saving new amount for product:', product);
   }
   addItem() {
-    this.showList = true;
     if (this.selectedType && this.name) {
       this.Myproducts.push({ type: this.selectedType, name: this.name });
       // Clear the form fields

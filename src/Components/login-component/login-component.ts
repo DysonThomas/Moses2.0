@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Api } from '../../services/api';
 import { FormsModule } from '@angular/forms';
 import { Auth } from '../../services/auth';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login-component',
@@ -20,15 +21,23 @@ export class LoginComponent {
   SPassword: string = '';
   email: string = '';
   password: string = '';
-  constructor(private api: Api, public auth: Auth) {}
+  profileData: any = {};
+  constructor(private api: Api, public auth: Auth, private snackBar: MatSnackBar) {}
   isNewUser() {
     console.log('Clicked');
     console.log(this.newUser);
     this.newUser = !this.newUser;
   }
   signup() {
+    console.log(
+      'Signing up with:',
+      this.SFullname,
+      this.SEmail,
+      this.SPassword,
+      this.selectedChurch
+    );
     if (!this.SFullname || !this.SEmail || !this.SPassword || !this.selectedChurch) {
-      alert('Please fill all the fields');
+      this.showAlert('Please fill all the fields');
       return;
     }
     this.api
@@ -36,11 +45,33 @@ export class LoginComponent {
         username: this.SFullname,
         email: this.SEmail,
         password: this.SPassword,
-        church_id: this.selectedChurch,
       })
       .subscribe({
         next: (data) => {
-          console.log('Signup successful:', data);
+          this.profileData = {
+            user_id: data.user_id,
+            username: this.SFullname,
+            church_id: this.selectedChurch,
+            dob: null,
+            housename: '',
+            place: '',
+            district: '',
+            state: '',
+            country: '',
+            gender: '',
+            phone: '',
+          };
+          console.log('Signup successful:', this.profileData);
+          this.showAlert('Signup successful! Please log in.');
+
+          this.api.addProfile(this.profileData).subscribe({
+            next: (data) => {
+              console.log('Profile added successfully:', data);
+            },
+            error: (error) => {
+              console.error('Adding profile failed:', error);
+            },
+          });
           this.newUser = false;
         },
         error: (error) => {
@@ -50,7 +81,7 @@ export class LoginComponent {
   }
   login() {
     if (!this.email || !this.password) {
-      alert('Please enter both email and password');
+      this.showAlert('Please enter both email and password');
       return;
     }
     this.api.login({ email: this.email, password: this.password }).subscribe({
@@ -58,12 +89,20 @@ export class LoginComponent {
         console.log('Login successful:', data);
         localStorage.setItem('token', data.token);
         localStorage.setItem('userId', data.user.id);
-        localStorage.setItem('churchID', data.user.church_id);
         this.auth.isLoggedIn.set(true);
       },
       error: (error) => {
-        console.error('Login failed:', error);
+        if (error.status === 401) {
+          this.showAlert('Invalid email or password');
+        }
       },
+    });
+  }
+  showAlert(msg: string) {
+    this.snackBar.open(msg, 'Close', {
+      duration: 3000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
     });
   }
   ngOnInit() {

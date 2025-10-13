@@ -1,26 +1,85 @@
-     .navbar {
-            width: 100%;
-            background: #4B0082;
-            color: #fff;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            padding: 12px 32px;
-            box-sizing: border-box;
-        }
-        .navbar button {
-            background: #fff;
-            color: #4B0082;
-            border: none;
-            border-radius: 4px;
-            padding: 8px 18px;
-            font-size: 15px;
-            margin-left: 16px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: background 0.2s, color 0.2s;
-        }
-        .navbar button:hover {
-            background: #e0d7f3;
-            color: #2d004d;
-        }
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #71e3e700; /* pastel cyan */
+  padding: 10px 20px;
+  color: #1d3557; /* dark text for contrast */
+  font-family: Arial, sans-serif;
+}
+
+.left-section .cross-symbol {
+  font-size: 24px;
+  color: #1d3557; /* same dark text */
+  text-decoration: none;
+}
+
+.center-section .brand {
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #1d3557;
+}
+
+.right-section {
+  position: relative;
+}
+
+.dropbtn {
+  background-color: #f1faee; /* pastel cream */
+  color: #1d3557;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #ffe5d9; /* pastel pink */
+  min-width: 150px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.dropdown-content button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background-color: #fff; /* light background for buttons */
+  cursor: pointer;
+  text-align: left;
+}
+
+.dropdown-content button:hover {
+  background-color: #cce7ff; /* pastel hover effect */
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropbtn:hover {
+  background-color: #d9f7f7; /* slightly darker pastel on hover */
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .center-section {
+    margin: 10px 0;
+  }
+}

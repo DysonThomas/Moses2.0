@@ -33,6 +33,7 @@
         </form>
     </div>
     <!-- Card below the form -->
+     @if(Myproducts.length > 0){
     @for (product of Myproducts; track product.id) {
 
     <div class="card" id="userCard">
@@ -64,6 +65,7 @@
         <button class="delete-btn" (click)="ondeleteClick(product)">✖</button>
     </div>
     }
+}
 
 </div>
 

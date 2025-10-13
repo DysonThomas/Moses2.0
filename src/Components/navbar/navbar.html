@@ -1,9 +1,34 @@
-<div class="navbar">
-    @if(isProfilePage()){
-    <button (click)="backToHome()">Home Page</button>
-    }
-    @if(!isProfilePage()){
-    <button (click)="editProfile()">Edit Profile</button>
-    }
-    <button (click)="logout()">Logout</button>
-</div>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div id="navbarBasicExample" class="navbar-menu">
+
+        <div class="navbar-end">
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                    Menu
+                </a>
+
+                <div class="navbar-dropdown">
+                    @if(!isProfilePage()){
+                    <a (click)="editProfile()" class="navbar-item">
+                        Edit Profile
+                    </a>
+                    }
+
+                    <a (click)="logout()" class="navbar-item">
+                        Logout
+                    </a>
+                </div>
+            </div>
+            <div class="navbar-item">
+
+                <div class="buttons">
+                    @if(isProfilePage()){
+                    <a (click)="backToHome()" class="button is-primary">
+                        <strong>Home Page</strong>
+                    </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
