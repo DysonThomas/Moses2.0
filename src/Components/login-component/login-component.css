@@ -13,7 +13,7 @@
       padding: 2rem 2.5rem;
       border-radius: 8px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-      width: 320px;
+      max-width: 700px;
     }
     .login-container h2 {
       margin-bottom: 1.5rem;
@@ -35,7 +35,7 @@
       font-size: 1rem;
     }
     .login-container select {
-      width: 100%;
+      width: 25;
       padding: 0.5rem;
       margin-bottom: 1.2rem;
       border: 1px solid #ccc;
@@ -137,10 +137,5 @@
   cursor: pointer;
 
 }
-.bottom{
-    margin-left: 15px;
-    text-align: center;
-}
 
- 
  
