@@ -9,7 +9,6 @@ export class Auth {
   constructor() {
     const token = localStorage.getItem('token');
     this.isLoggedIn.set(!!token);
-    console.log('Auth initialized. isLoggedIn:', this.isLoggedIn());
   }
   getToken(): string {
     return localStorage.getItem('token') || '';

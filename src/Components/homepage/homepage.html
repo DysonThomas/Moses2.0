@@ -33,10 +33,53 @@
         </form>
     </div>
     <!-- Card below the form -->
-     @if(Myproducts.length > 0){
+    @if(Myproducts.length > 0){
     @for (product of Myproducts; track product.id) {
 
-    <div class="card" id="userCard">
+    <div class="card mb-4">
+        <div class="card-content">
+            <!-- Info Section -->
+            <div class="content">
+                <p class="is-size-5 has-text-weight-bold">{{ product.name }}</p>
+                <p class="is-size-6 has-text-grey">{{ product.product_name }}</p>
+            </div>
+
+            <!-- Price Display / Edit -->
+            @if (editingProductId !== product.id) {
+            <div class="columns is-mobile is-vcentered">
+                <div class="column is-half">
+                    <p class="is-size-5">₹{{ product.new_price || product.price }}</p>
+                </div>
+                <div class="column is-half has-text-right">
+                    <button class="button is-small is-light" (click)="editamount(product.id)">
+                        <span class="icon is-small">
+                            <img src="assets/edit.png" alt="Edit" />
+                        </span>
+                    </button>
+                </div>
+            </div>
+            }
+
+            @if (editingProductId === product.id) {
+            <div class="field has-addons is-flex-wrap-wrap">
+                <div class="control is-expanded">
+                    <input class="input" type="number" [(ngModel)]="contributionAmount" [min]="product.new_price"
+                        placeholder="Enter Amount" />
+                </div>
+                <div class="control mt-2-mobile ">
+                    <button class="button is-success" (click)="savenewamount(product)">✓</button>
+                </div>
+            </div>
+            }
+        </div>
+
+        <!-- Delete Button -->
+        <footer class="card-footer mt-6">
+            <a class="card-footer-item has-text-danger" (click)="ondeleteClick(product)">✖ Delete</a>
+        </footer>
+    </div>
+
+    <!-- <div class="card" id="userCard">
         <div class="card-content">
             <div class="info">
                 <div class="name">{{ product.name }}</div>
@@ -62,10 +105,10 @@
             }
         </div>
 
-        <button class="delete-btn" (click)="ondeleteClick(product)">✖</button>
-    </div>
+        <button class="delete-btn " (click)="ondeleteClick(product)">✖</button>
+    </div> -->
     }
-}
+    }
 
 </div>
 

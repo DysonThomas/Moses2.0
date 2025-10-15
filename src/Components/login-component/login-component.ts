@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { Api } from '../../services/api';
 import { FormsModule } from '@angular/forms';
 import { Auth } from '../../services/auth';
@@ -22,20 +22,12 @@ export class LoginComponent {
   email: string = '';
   password: string = '';
   profileData: any = {};
+  @Output() dataEmitter = new EventEmitter<{ token: string; userId: string }>();
   constructor(private api: Api, public auth: Auth, private snackBar: MatSnackBar) {}
   isNewUser() {
-    console.log('Clicked');
-    console.log(this.newUser);
     this.newUser = !this.newUser;
   }
   signup() {
-    console.log(
-      'Signing up with:',
-      this.SFullname,
-      this.SEmail,
-      this.SPassword,
-      this.selectedChurch
-    );
     if (!this.SFullname || !this.SEmail || !this.SPassword || !this.selectedChurch) {
       this.showAlert('Please fill all the fields');
       return;
@@ -61,13 +53,11 @@ export class LoginComponent {
             gender: '',
             phone: '',
           };
-          console.log('Signup successful:', this.profileData);
+
           this.showAlert('Signup successful! Please log in.');
 
           this.api.addProfile(this.profileData).subscribe({
-            next: (data) => {
-              console.log('Profile added successfully:', data);
-            },
+            next: (data) => {},
             error: (error) => {
               console.error('Adding profile failed:', error);
             },
@@ -86,9 +76,10 @@ export class LoginComponent {
     }
     this.api.login({ email: this.email, password: this.password }).subscribe({
       next: (data) => {
-        console.log('Login successful:', data);
         localStorage.setItem('token', data.token);
         localStorage.setItem('userId', data.user.id);
+        const datatoemit = { token: data.token, userId: data.user.id };
+        this.dataEmitter.emit(datatoemit);
         this.auth.isLoggedIn.set(true);
       },
       error: (error) => {
@@ -109,7 +100,6 @@ export class LoginComponent {
     this.loading = true;
     this.api.getAllChurch().subscribe({
       next: (data) => {
-        console.log('Churches:', data);
         this.churches = data;
         this.loading = false;
       },

@@ -8,6 +8,10 @@
       margin: 0;
       font-family: Arial, sans-serif;
     }
+    #login{
+      width: 400px;
+    }
+    
     .login-container {
       background: #fff;
       padding: 2rem 2.5rem;
@@ -64,8 +68,8 @@
   cursor: pointer;
 
 }
+
 .signup-text {
-  margin-bottom: 55px;
   font-size: 14px;
 } 
 .signup-text span {

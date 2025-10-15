@@ -1,7 +1,8 @@
 <body>
     @if(!newUser){
-    <div class="login-container">
-        <h2>Moses - Login</h2>
+    <div id="login" class="login-container">
+
+        <h2 class="title is-5">Moses - Login</h2>
         <form>
             <label for="username">Email</label>
             <input type="text" [(ngModel)]="email" id="username" name="username" required>
@@ -10,7 +11,7 @@
             <input type="password" [(ngModel)]="password" id="password" name="password" required>
 
             <button (click)="login()" type="submit">Login</button>
-            <p class="signup-text">
+            <p class="signup-text my-3">
                 Don't have an account?
                 <button type="button" (click)="isNewUser()" class="signup-btn">Sign Up</button>
             </p>
@@ -19,8 +20,8 @@
     </div>
     }
     @if(newUser){
-    <div class="login-container">
-        <h2>Moses - Signup</h2>
+    <div id="login" class="login-container">
+        <h2 class="title is-5">Moses - Signup</h2>
         <form>
             <label for="username">Full Name</label>
             <input type="text" [(ngModel)]="SFullname" id="username" name="username" required>
@@ -44,7 +45,7 @@
 
             </select>
             <button (click)="signup()" type="submit">Sign Up</button>
-            <p class="signup-text">
+            <p class="signup-text my-3">
                 Already have an account?
                 <button type="button" (click)="isNewUser()" class="signup-btn">Login</button>
             </p>

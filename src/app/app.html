@@ -1,19 +1,15 @@
 @if (auth.isLoggedIn()) {
 <app-navbar></app-navbar>
-@if (role===3 && !isProfilePage()) {
-@if(!isProfilePage()){
+
+@if (role === 3 && !isProfilePage()) {
 <app-homepage></app-homepage>
 }
-}
-@if (role===2 && !isProfilePage()) {
-@if(!isProfilePage()){
-<app-churchhomepage> </app-churchhomepage>
-}
+
+@if (role === 2 && !isProfilePage()) {
+<app-churchhomepage></app-churchhomepage>
 }
 
 <router-outlet></router-outlet>
-
-}
-@if(!auth.isLoggedIn()) {
-<app-login-component></app-login-component>
+} @else {
+<app-login-component (dataEmitter)="receiveData($event)"></app-login-component>
 }

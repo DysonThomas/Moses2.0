@@ -80,7 +80,7 @@
             font-size: 16px;
         }
          select {
-            width: 104%;
+            width: 100%;
             padding: 8px;
             border-radius: 4px;
             border: 1px solid #bbb;
@@ -125,9 +125,9 @@
             color: #fff;
             border: none;
             border-radius: 4px;
-            padding: 6px 14px;
+      
             font-size: 14px;
-            margin-left: 16px;
+          
             cursor: pointer;
         }
         .card .delete-btn:hover {
@@ -231,19 +231,127 @@
   border: none;
   border-radius: 4px;
   padding: 4px 8px;
+  margin-top: 35px;
   cursor: pointer;
-  margin-top: 8px;
+
 }
 
-/* ✅ Responsive for tablet and mobile */
-@media (max-width: 768px) {
-  .card {
-    flex-direction: column;
-    align-items: flex-start;
+
+
+.card.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.card-content {
+  padding: 1.25rem;
+}
+
+
+/* Mobile optimizations for the card */
+.card.mb-4 {
+  margin-bottom: 1rem;
+}
+
+/* Mobile screens (up to 768px) */
+@media screen and (max-width: 768px) {
+  .card.mb-4 {
+    margin-bottom: 0.75rem;
   }
 
-  .delete-btn {
-    align-self: flex-end;
-    margin-top: 8px;
+  .card-content {
+    padding: 1rem;
+  }
+
+  /* Product name and info */
+  .card-content .content p.is-size-5 {
+    font-size: 1rem !important;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-content .content p.is-size-6 {
+    font-size: 0.875rem !important;
+  }
+
+  /* Price section */
+  .columns.is-mobile {
+    margin-bottom: 0.5rem;
+  }
+
+  .columns.is-mobile p.is-size-5 {
+    font-size: 1.125rem !important;
+  }
+
+  /* Edit button */
+  .button.is-small {
+    padding: 0.25rem 0.5rem;
+  }
+
+  .button.is-small .icon img {
+    max-width: 16px;
+    height: auto;
+  }
+
+  /* Input field when editing */
+  .field.has-addons {
+    margin-bottom: 0;
+  }
+
+  .field.has-addons .control.is-expanded {
+    flex: 1;
+  }
+
+  .field.has-addons input.input {
+    font-size: 0.875rem;
+  }
+
+  .field.has-addons .control.mt-2-mobile {
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+
+  .field.has-addons .control.mt-2-mobile .button {
+    width: 100%;
+  }
+
+  /* Card footer */
+  .card-footer.mt-6 {
+    margin-top: 1rem !important;
+  }
+
+  .card-footer-item {
+    padding: 0.75rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Small mobile screens (up to 480px) */
+@media screen and (max-width: 480px) {
+  .card-content {
+    padding: 0.75rem;
+  }
+
+  .card-content .content p.is-size-5 {
+    font-size: 0.9375rem !important;
+  }
+
+  .columns.is-mobile p.is-size-5 {
+    font-size: 1rem !important;
+  }
+
+  .card-footer-item {
+    padding: 0.625rem;
+  }
+}
+
+/* Additional mobile-specific fix for has-addons field */
+@media screen and (max-width: 768px) {
+  .field.has-addons.is-flex-wrap-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .field.has-addons.is-flex-wrap-wrap .control {
+    width: 100%;
   }
 }

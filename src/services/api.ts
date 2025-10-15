@@ -14,7 +14,6 @@ export class Api {
   }
   // Sign up method
   signup(userData: { username: string; email: string; password: string }): Observable<any> {
-    console.log(userData);
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post(this.apiUrl + 'register', userData, { headers });
   }
@@ -24,7 +23,6 @@ export class Api {
     return this.http.post(this.apiUrl + 'login', credentials, { headers });
   }
   getProfile(token: string, user_id: string): Observable<any> {
-    console.log('Fetching profile for user_id:', user_id);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
@@ -33,7 +31,6 @@ export class Api {
   }
   // Get role of user by id
   getUser(token: string, user_id: string): Observable<any> {
-    console.log('Fetching profile for user_id:', user_id);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,

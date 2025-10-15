@@ -32,47 +32,36 @@ export class Homepage {
     this.api.getProfile(token, userId).subscribe({
       next: (res) => {
         this.profileData = res;
-        console.log('Profile data113:', this.profileData);
 
         this.api.getAllChurch().subscribe({
           next: (churchRes) => {
             const church = churchRes.find((c: any) => c.church_id === this.profileData.church_id);
-            console.log('Matching church:', church);
+
             if (church) {
               this.profileData.churchName = church.name;
             } else {
               this.profileData.churchName = 'Unknown Church';
             }
-            console.log('Church data:', churchRes);
-            console.log('User profile with church name:', this.profileData);
           },
         });
         this.api.getProductsByChurchId(token, this.profileData.church_id).subscribe({
           next: (productRes) => {
             this.products = productRes;
-            console.log('Products:', this.products);
           },
-          error: (err) => {
-            console.log(err);
-          },
+          error: (err) => {},
         });
         this.isLoading = false;
       },
       error: (err) => {
-        console.log(err);
         this.isLoading = true;
       },
     });
     // Load Type of Products
   }
   editamount(prodId: any) {
-    console.log('Editing product with ID:', prodId);
     this.editingProductId = prodId;
   }
   savenewamount(product: any) {
-    console.log('Saving new amount for product:', product);
-    console.log('New contribution amount:', this.contributionAmount);
-    console.log('Required minimum amount:', product.price);
     const amount = Number(this.contributionAmount);
     const minPrice = Number(product.price);
 
@@ -90,7 +79,6 @@ export class Homepage {
       this.editingProductId = null;
     }
     this.findSum();
-    console.log('Saving new amount for product:', product);
   }
   addItem() {
     if (this.selectedType && this.name) {
@@ -107,7 +95,6 @@ export class Homepage {
           price: matched ? matched.price : '0.00',
         };
       });
-      console.log('Myproducts:', this.Myproducts);
     }
     // Function to find sun of item in Myprodcuts array
     this.findSum();
@@ -121,8 +108,6 @@ export class Homepage {
 
   ondeleteClick(product: any) {
     this.Myproducts = this.Myproducts.filter((p) => p.id !== product.id);
-    console.log('Deleted product with ID:', product);
-    console.log('Updated Myproducts:', this.Myproducts);
     this.findSum();
   }
 }

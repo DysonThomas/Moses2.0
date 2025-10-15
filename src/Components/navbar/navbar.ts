@@ -9,7 +9,11 @@ import { Router } from '@angular/router';
   styleUrl: './navbar.css',
 })
 export class Navbar {
+  role: number | null = null;
   constructor(public auth: Auth, private router: Router) {}
+  ngOnInit() {
+    this.role = this.auth.getRole();
+  }
   logout() {
     this.auth.logout();
   }
