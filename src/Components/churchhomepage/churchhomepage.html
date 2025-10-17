@@ -1,1 +1,9 @@
-<p>churchhomepage works!</p>
+@if(currentView=='home'){
+<app-church-dash> </app-church-dash>
+}
+@if(currentView=='order'){
+<app-order> </app-order>
+}
+@if(currentView=='manageproduct'){
+<app-productmaster [church_ID]="church_ID.toString()"></app-productmaster>
+}

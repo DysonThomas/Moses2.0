@@ -18,6 +18,7 @@ import { Churchhomepage } from '../Components/churchhomepage/churchhomepage';
 export class App {
   showProfile: boolean = false;
   role: number | null = null;
+  userData: any = null;
   protected readonly title = signal('moses2.0');
 
   constructor(public auth: Auth, private router: Router, private api: Api) {}
@@ -47,6 +48,7 @@ export class App {
     this.api.getUser(token, userId).subscribe({
       next: (data) => {
         this.role = data.role;
+        this.userData = data;
         this.auth.setUser(data);
       },
       error: (error) => {

@@ -1,0 +1,39 @@
+<div class="container">
+    @if(products.length==0){
+    <p class="no-products">No products available.</p>
+    }
+    @if(products.length>0){
+    @for (product of products; track $index) {
+    <div class="card" role="region" aria-label="Product card">
+        <div class="info">
+            <div class="details">
+                <div class="name">{{product.product_name}}</div>
+
+                <div class="price">{{product.price}}</div>
+            </div>
+        </div>
+        <div class="actions">
+            @if(product.id!=editingproductId){
+            <button class="btn btn-manage" (click)="manageButton(product.id)" type="button"
+                aria-label="Manage product">⚙️
+                Manage</button>
+            }
+            @if(product.id==editingproductId){
+            <div class="field has-addons is-flex-wrap-wrap">
+                <div class="control is-expanded">
+                    <input class="input" type="number" [(ngModel)]="newAmount" [min]="product.new_price"
+                        placeholder="Enter New Amount" required />
+                </div>
+                <div class="control ml-3 mt-2-mobile ">
+                    <button (click)="update(product.id)" class="button is-success">✓</button>
+                </div>
+                <div (click)="delete(product)" class="control ml-3 mt-2-mobile ">
+                    <button class="button is-danger">X</button>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+    }
+    }
+</div>

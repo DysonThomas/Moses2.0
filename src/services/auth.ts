@@ -33,7 +33,7 @@ export class Auth {
     return this.userData;
   }
   getRole() {
-    return this.getUser().role;
+    return this.getUser();
   }
 
   logout() {

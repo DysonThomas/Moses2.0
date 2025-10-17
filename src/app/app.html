@@ -1,5 +1,5 @@
 @if (auth.isLoggedIn()) {
-<app-navbar></app-navbar>
+<app-navbar [userData]="userData" [userRole]="role"></app-navbar>
 
 @if (role === 3 && !isProfilePage()) {
 <app-homepage></app-homepage>

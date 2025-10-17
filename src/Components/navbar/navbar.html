@@ -1,12 +1,62 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
     <div id="navbarBasicExample" class="navbar-menu">
 
+
+        @if(userRole == 2) {
+        <div class="navbar-brand">
+            <a (click)="orderClick('home')" class="navbar-item is-flex is-align-items-center" href="#">
+                <h1 class="title is-4 has-text-weight-semibold has-text-primary">
+                    MOSES
+                </h1>
+            </a>
+        </div>
+        <div class="navbar-menu ml-5">
+            <div class="navbar-start">
+                <a (click)="orderClick('MP')" class="navbar-item">
+                    Manage Products
+                </a>
+                <a class="navbar-item" (click)="orderClick('order')">
+                    View Orders
+                </a>
+
+            </div>
+        </div>
+        <div class="navbar-end">
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                    Profile
+                </a>
+                <div class="navbar-dropdown">
+                    @if(!isProfilePage()){
+                    <a (click)="editProfile()" class="navbar-item">
+                        Edit Profile
+                    </a>
+                    }
+
+                    <a (click)="logout()" class="navbar-item">
+                        Logout
+                    </a>
+                </div>
+            </div>
+
+            <div class="navbar-item">
+                <div class="buttons">
+                    @if(isProfilePage()){
+                    <a (click)="backToHome()" class="button is-primary">
+                        <strong>Home Page</strong>
+                    </a>
+                    }
+                </div>
+            </div>
+        </div>
+        }
+
+        @if(userRole == 3) {
         <div class="navbar-end">
             <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link">
                     Menu
                 </a>
-
                 <div class="navbar-dropdown">
                     @if(!isProfilePage()){
                     <a (click)="editProfile()" class="navbar-item">
@@ -30,5 +80,6 @@
                 </div>
             </div>
         </div>
+        }
     </div>
 </nav>

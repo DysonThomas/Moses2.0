@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Auth } from '../../services/auth';
 import { Router } from '@angular/router';
-
+import { Api } from '../../services/api';
+import { Shared } from '../../services/shared';
 @Component({
   selector: 'app-navbar',
   imports: [],
@@ -9,10 +10,18 @@ import { Router } from '@angular/router';
   styleUrl: './navbar.css',
 })
 export class Navbar {
+  @Input() userData: any = null;
+  @Input() userRole: number | null = null;
   role: number | null = null;
-  constructor(public auth: Auth, private router: Router) {}
-  ngOnInit() {
-    this.role = this.auth.getRole();
+  constructor(
+    private api: Api,
+    public auth: Auth,
+    private router: Router,
+    private shared: Shared
+  ) {}
+  ngOnChanges() {
+    console.log('Navbar received userData:', this.userData);
+    console.log('Navbar received userRole:', this.userRole);
   }
   logout() {
     this.auth.logout();
@@ -25,5 +34,8 @@ export class Navbar {
   }
   isProfilePage(): boolean {
     return this.router.url === '/profile';
+  }
+  orderClick(action: string) {
+    this.shared.updateNavbarAction(action); //
   }
 }

@@ -76,4 +76,25 @@ export class Api {
     });
     return this.http.get(`${this.apiUrl}getuserprofile/${user_id}`, { headers });
   }
+  // api to fetch church id by user id
+  getChurchIdByUserId(token: string, user_id: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.get(`${this.apiUrl}getchurchidbyuserid/${user_id}`, { headers });
+  }
+
+  // api to update the product price using product id
+  updateProductPrice(
+    token: string,
+    product_id: string,
+    priceData: { price: number }
+  ): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.put(`${this.apiUrl}updateproductprice/${product_id}`, priceData, { headers });
+  }
 }
