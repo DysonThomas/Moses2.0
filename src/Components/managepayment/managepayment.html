@@ -1,0 +1,57 @@
+@if(isShowKeysForm){
+<section class="section">
+    <div class="container">
+        <h1 class="title">Razorpay Keys</h1>
+
+        <form id="manage-payment-form" class="box" novalidate>
+
+
+            <div class="field">
+                <label class="label" for="razorpay_key_id">Razorpay Key ID</label>
+                <div class="control">
+                    <input id="razorpay_key_id" name="razorpay_key_id" [(ngModel)]="KeysData.key_id" class="input"
+                        type="text" placeholder="rzp_test_XXXXXXXXXX" required>
+                </div>
+                <p class="help">Use your Razorpay Key ID (test or live).</p>
+            </div>
+
+            <div class="field">
+                <label class="label" for="razorpay_key_secret">Razorpay Key Secret</label>
+                <div class="field ">
+                    <div class="control is-expanded">
+                        <input id="razorpay_key_secret" [(ngModel)]="KeysData.key_secret" name="razorpay_key_secret"
+                            class="input" type="password" placeholder="••••••••••" required>
+                    </div>
+
+                </div>
+                <p class="help">Keep this secret safe.
+                </p>
+            </div>
+
+            <div class="field">
+                <div class="control is-expanded">
+                    <button (click)="saveKeys()" id="save-btn" type="submit" class="button is-primary ">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+}
+@if(!isShowKeysForm){
+<div class="card m-6">
+    <header class="card-header">
+        <p class="card-header-title">Razorpay Key</p>
+    </header>
+    <div class="card-content">
+        <div class="content">
+            <p><strong>Key ID:</strong> {{ KeysData.api_key }}</p>
+        </div>
+    </div>
+    <footer class="card-footer" style="flex-direction: column; align-items: flex-start;">
+        <a (click)="deleteKey()" class="card-footer-item has-text-danger">
+            <span class="icon"><i class="fas fa-trash"></i></span>
+            <span>Delete</span>
+        </a>
+    </footer>
+</div>
+}

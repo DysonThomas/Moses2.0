@@ -92,8 +92,8 @@ export class LoginComponent {
   showAlert(msg: string) {
     this.snackBar.open(msg, 'Close', {
       duration: 3000,
-      horizontalPosition: 'right',
-      verticalPosition: 'top',
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
     });
   }
   ngOnInit() {

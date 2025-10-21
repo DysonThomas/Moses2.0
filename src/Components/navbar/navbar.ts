@@ -23,8 +23,9 @@ export class Navbar {
     console.log('Navbar received userData:', this.userData);
     console.log('Navbar received userRole:', this.userRole);
   }
-  logout() {
+  logout(action: string) {
     this.auth.logout();
+    this.shared.updateNavbarAction(action); //
   }
   editProfile() {
     this.router.navigate(['/profile']);

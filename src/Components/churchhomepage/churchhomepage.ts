@@ -5,10 +5,11 @@ import { Shared } from '../../services/shared';
 import { Productmaster } from '../productmaster/productmaster';
 import { Auth } from '../../services/auth';
 import { Api } from '../../services/api';
+import { Managepayment } from '../managepayment/managepayment';
 ``;
 @Component({
   selector: 'app-churchhomepage',
-  imports: [Order, ChurchDash, Productmaster],
+  imports: [Order, ChurchDash, Productmaster, Managepayment],
   templateUrl: './churchhomepage.html',
   styleUrl: './churchhomepage.css',
 })
@@ -48,6 +49,9 @@ export class Churchhomepage {
     }
     if (action === 'MP') {
       this.currentView = 'manageproduct';
+    }
+    if (action === 'payment') {
+      this.currentView = 'payment';
     }
   }
 }

@@ -18,6 +18,9 @@
                 <a class="navbar-item" (click)="orderClick('order')">
                     View Orders
                 </a>
+                <a class="navbar-item" (click)="orderClick('payment')">
+                    Manage Payment
+                </a>
 
             </div>
         </div>
@@ -33,7 +36,7 @@
                     </a>
                     }
 
-                    <a (click)="logout()" class="navbar-item">
+                    <a (click)="logout('logout')" class="navbar-item">
                         Logout
                     </a>
                 </div>
@@ -64,7 +67,7 @@
                     </a>
                     }
 
-                    <a (click)="logout()" class="navbar-item">
+                    <a (click)="logout('home')" class="navbar-item">
                         Logout
                     </a>
                 </div>

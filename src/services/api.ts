@@ -22,6 +22,13 @@ export class Api {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post(this.apiUrl + 'login', credentials, { headers });
   }
+  verifyToken(token: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.get(`${this.apiUrl}protected`);
+  }
   getProfile(token: string, user_id: string): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -96,5 +103,56 @@ export class Api {
       Authorization: `Bearer ${token}`,
     });
     return this.http.put(`${this.apiUrl}updateproductprice/${product_id}`, priceData, { headers });
+  }
+  deleteProduct(token: string, product_id: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.delete(`${this.apiUrl}deleteproduct/${product_id}`, { headers });
+  }
+  getAllProducts(): Observable<any> {
+    return this.http.get(`${this.apiUrl}getallproducts`, {});
+  }
+  // add neew product on to product table based on church id
+  addNewProduct(
+    token: string,
+    productData: { church_id: string; product_id: number; price: number }
+  ): Observable<any> {
+    console.log('Adding new product with data:', productData);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.post(`${this.apiUrl}addproduct`, productData, { headers });
+  }
+  // add razorpay keys for church
+  addRazorpayKeys(
+    token: string,
+    church_id: string,
+    keysData: { key_id: string; key_secret: string }
+  ): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+    const body = { ...keysData, church_id };
+    return this.http.post(`${this.apiUrl}addrazorpaykeys`, body, { headers });
+  }
+  // get razoorpay key using church id
+  getRazorpayKey(token: string, church_id: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.get(`${this.apiUrl}getrazorpaykeys/${church_id}`, { headers });
+  }
+  // api to delete razorpay keys using church id
+  deleteRazorpayKeys(token: string, church_id: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.delete(`${this.apiUrl}deleterazorpaykey/${church_id}`, { headers });
   }
 }

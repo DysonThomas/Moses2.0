@@ -1,4 +1,15 @@
+@if (isModalOpen){
+
+<app-addproduct-modal [churchId]="church_ID" [activeProducts]="products" (close)="handleClose()"></app-addproduct-modal>
+}
 <div class="container">
+
+    <div class="header is-flex is-justify-content-space-between is-align-items-center mb-5">
+        <h1 class="title is-4" aria-label="Product Master">Product Master</h1>
+        <button (click)="openModal()" class="button is-primary" aria-label="Add Product">
+            Add Product
+        </button>
+    </div>
     @if(products.length==0){
     <p class="no-products">No products available.</p>
     }
@@ -14,9 +25,13 @@
         </div>
         <div class="actions">
             @if(product.id!=editingproductId){
-            <button class="btn btn-manage" (click)="manageButton(product.id)" type="button"
-                aria-label="Manage product">⚙️
+            <button class="button  btn-manage" (click)="manageButton(product.id)" type="button"
+                aria-label="Manage product">
                 Manage</button>
+            <button (click)="deleteProduct(product.id)" class="button is-danger">
+                Delete
+            </button>
+
             }
             @if(product.id==editingproductId){
             <div class="field has-addons is-flex-wrap-wrap">

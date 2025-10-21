@@ -1,0 +1,52 @@
+<div class="modal is-active">
+    <div class="modal-background" (click)="onClose()"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Add a New Product</p>
+            <button class="delete" aria-label="close" (click)="onClose()"></button>
+        </header>
+        <section class="modal-card-body">
+            <div class="field">
+                <label class="label">Name</label>
+                <div class="control">
+                    <div class="select is-fullwidth">
+                        <select [(ngModel)]="prodID">
+
+                            @if(products.length == activeProducts.length){
+                            <option>All Products already added</option>
+                            }
+                            @else {
+                            <option>Select your product</option>
+                            @if(products.length == 0){
+                            <option>No Products Available Contact Admin</option>
+                            }
+                            @if(isLoading){
+                            <option>Loading Products...</option>
+                            }
+                            @if (products.length > 0) {
+                            @for(product of products; track product.product_id) {
+                            <option value="{{product.product_id}}" [disabled]="isProductActive(product.product_id)">
+                                {{product.product_name}}</option>
+                            }
+                            }
+                            }
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Amount</label>
+                <div class="control">
+                    <input class="input" [(ngModel)]="amount" type="text" placeholder="Enter amount">
+                </div>
+            </div>
+        </section>
+        <footer class="modal-card-foot">
+            <div class="buttons">
+                <button (click)="Save()" class="button is-success">Add</button>
+                <button class="button" (click)="onClose()">Cancel</button>
+            </div>
+        </footer>
+    </div>
+</div>

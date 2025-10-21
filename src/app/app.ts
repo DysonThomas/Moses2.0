@@ -37,7 +37,6 @@ export class App {
     // Check if user is already logged in (page refresh scenario)
     const userId = this.auth.getUserId();
     const token = this.auth.getToken();
-
     if (userId && token) {
       this.fetchUserProfile(token, userId);
     } else {
@@ -52,7 +51,7 @@ export class App {
         this.auth.setUser(data);
       },
       error: (error) => {
-        console.error('Failed to fetch profile:', error);
+        this.auth.logout();
       },
     });
   }

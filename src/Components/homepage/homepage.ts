@@ -3,6 +3,8 @@ import { Api } from '../../services/api';
 import { FormsModule } from '@angular/forms';
 import { Auth } from '../../services/auth';
 import { Spinner } from '../spinner/spinner';
+import { Paymentservice } from '../../services/paymentservice';
+declare var Razorpay: any;
 
 @Component({
   selector: 'app-homepage',
@@ -22,7 +24,7 @@ export class Homepage {
   contributionAmount: number | null = null;
   new_price: number | null = null;
   totalAmount: number = 0;
-  constructor(private api: Api, public auth: Auth) {}
+  constructor(private api: Api, public auth: Auth, private paymentService: Paymentservice) {}
   ngOnInit() {
     // Load Profile Data
     const token = this.auth.getToken();
@@ -98,6 +100,14 @@ export class Homepage {
     }
     // Function to find sun of item in Myprodcuts array
     this.findSum();
+  }
+  pay() {
+    const amount = this.totalAmount;
+    const currency = 'INR';
+    // this.paymentService.createOrder(amount,currency).subscribe(res)=>{
+
+    // }
+
   }
   findSum() {
     this.totalAmount = this.Myproducts.reduce(
