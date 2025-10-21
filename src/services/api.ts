@@ -155,4 +155,25 @@ export class Api {
     });
     return this.http.delete(`${this.apiUrl}deleterazorpaykey/${church_id}`, { headers });
   }
+  // api to add order details after payment
+  addOrderDetails(
+    token: string,
+    orderData: {
+      user_id: string;
+      amount: number;
+      currency: string;
+      status: string;
+      church_id: string;
+      order_id: string;
+      payment_id: string;
+      signature: string;
+      products: any[];
+    }
+  ): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.post(`${this.apiUrl}addorder`, orderData, { headers });
+  }
 }
