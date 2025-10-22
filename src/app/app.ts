@@ -26,6 +26,9 @@ export class App {
   isProfilePage(): boolean {
     return this.router.url === '/profile';
   }
+  isOrderPage(): boolean {
+    return this.router.url === '/orders';
+  }
 
   // Called when child emits login data
   receiveData(data: { token: string; userId: string }) {

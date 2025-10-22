@@ -1,1 +1,78 @@
-<p>order works!</p>
+<section class="section">
+    <div class="container">
+        @for(order of myOrders; track order.order_id)
+        {
+        <div class="card order-card">
+            <header class="card-header">
+                <p class="card-header-title">
+                    #<strong>{{order.order_id}}</strong>
+                </p>
+                <div class="card-header-icon order-meta" aria-label="order status and date" style="padding-right:1rem;">
+                    <!-- status tags: use is-success / is-warning / is-danger / is-info as needed -->
+                    <span class="tag is-success">{{order.status}}</span>
+                    <span class="tag is-light">Placed: {{order.created_at | date:'short'}}</span>
+                </div>
+            </header>
+            @for(product of order.products; track product.product_id)
+            {
+            <div class="card-content">
+                <!-- Products list -->
+                <div class="content">
+                    <div class="columns is-multiline is-mobile">
+                        <!-- Product item -->
+                        <div class="column is-12 product-item">
+                            <div class="media">
+                                <div class="media-left">
+
+                                </div>
+                                <div class="media-content">
+                                    <p>
+                                        <strong>{{product.name}}</strong>
+                                        <br>
+                                        <small class="has-text-grey">
+                                            {{product.product_name}}</small>
+                                    </p>
+                                </div>
+                                <div class="media-right has-text-right">
+                                    <p class="is-size-6 has-text-weight-semibold">${{product.price}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- add more product items as needed -->
+                    </div>
+                </div>
+            </div>
+            }
+
+
+
+
+            <footer class="card-footer" style="align-items:center; justify-content:space-between; padding:1rem;">
+                <div style="padding-left:1rem;">
+                    <p class="is-size-6 has-text-grey"></p>
+                    <p class="is-size-6 has-text-grey"></p>
+                </div>
+
+                <div style="text-align:right; padding-right:1rem;">
+                    <p class="is-size-5">Total</p>
+                    <p class="is-size-4 has-text-weight-bold">{{order.amount}}</p>
+                </div>
+            </footer>
+
+            <!-- <div class="card-footer">
+                <a href="#" class="card-footer-item">View Details</a>
+                <a href="#" class="card-footer-item">Track</a>
+                <a href="#" class="card-footer-item">Contact Support</a>
+            </div> -->
+        </div>
+        }
+
+        <!-- end order card -->
+    </div>
+</section>
+@if(myOrders.length == 0)
+{
+<div class="has-text-centered has-text-grey">
+    No orders found.
+</div>
+}

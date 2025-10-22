@@ -36,7 +36,13 @@ export class Navbar {
   isProfilePage(): boolean {
     return this.router.url === '/profile';
   }
+  isOrderPage(): boolean {
+    return this.router.url === '/orders';
+  }
   orderClick(action: string) {
     this.shared.updateNavbarAction(action); //
+  }
+  viewOrders() {
+    this.router.navigate(['/orders']);
   }
 }

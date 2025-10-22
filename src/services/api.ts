@@ -176,4 +176,12 @@ export class Api {
     });
     return this.http.post(`${this.apiUrl}addorder`, orderData, { headers });
   }
+  // fetch orders by user id
+  getOrdersByUserId(token: string, user_id: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.get(`${this.apiUrl}getuserorders/${user_id}`, { headers });
+  }
 }

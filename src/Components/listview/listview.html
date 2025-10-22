@@ -1,0 +1,95 @@
+<section class="section">
+    <div class="container">
+        <!-- Date filter form -->
+        <form class="box" id="date-filter-form" autocomplete="off">
+            <h2 class="title is-5">Filter by date</h2>
+
+            <div class="columns is-variable is-2">
+                <div class="column">
+                    <div class="field">
+                        <label class="label">From Date</label>
+                        <div class="control">
+                            <input class="input" type="date" id="fromDate" name="fromDate">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="field">
+                        <label class="label">To Date</label>
+                        <div class="control">
+                            <input class="input" type="date" id="toDate" name="toDate">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="field">
+                        <label class="label">Product Type</label>
+                        <div class="control">
+                            <div class="select is-fullwidth">
+                                <select (change)="onChange($event)" [(ngModel)]="selectedType" id="eventType"
+                                    name="eventType">
+                                    <option value="0"> View All</option>
+                                    <option value="10001">Normal and Anidhe</option>
+                                    @for(prod of products; track prod.product_id){
+                                    @if(prod.product_name!="Normal" && prod.product_name!="Aanidhe"){
+                                    <option value={{prod.product_id}}>{{prod.product_name}}</option>
+                                    }
+                                    }
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @if(showAllButton){
+                <div class="column is-narrow is-flex is-align-items-flex-end">
+                    <div class="field">
+                        <div class="control">
+                            <button class="button is-primary" type="submit">Show All</button>
+                        </div>
+                    </div>
+                </div>
+                }
+                @if(!showAllButton){
+                <div class="column is-narrow is-flex is-align-items-flex-end">
+                    <div class="field">
+                        <div class="control">
+                            <button class="button is-primary" type="submit">Fetch</button>
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
+        </form>
+
+
+        <!-- <div class="card">
+            <header class="card-header">
+                <p class="card-header-title">Attendees</p>
+                <a class="card-header-icon" aria-label="more options">
+                    <span class="icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 6a2 2 0 110-4 2 2 0 010 4zM12 14a2 2 0 110-4 2 2 0 010 4zM12 22a2 2 0 110-4 2 2 0 010 4z"
+                                fill="currentColor" />
+                        </svg>
+                    </span>
+                </a>
+            </header>
+
+            <div class="card-content">
+                <div class="content">
+                    <ul class="menu-list">
+                        <li><a>Mary Johnson</a></li>
+                        <li><a>James Smith</a></li>
+                        <li><a>Linda Williams</a></li>
+                        <li><a>Robert Brown</a></li>
+                        <li><a>Patricia Davis</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</section>

@@ -1,0 +1,22 @@
+    .product-item+.product-item {
+            margin-top: 0.75rem;
+        }
+
+        .product-thumb {
+            width: 56px;
+            height: 56px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .order-card {
+            max-width: 760px;
+            margin: 1rem auto;
+        }
+
+        .order-meta {
+            gap: 0.5rem;
+            align-items: center;
+            display: flex;
+            flex-wrap: wrap;
+        }

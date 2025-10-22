@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { Order } from '../order/order';
 import { ChurchDash } from '../church-dash/church-dash';
 import { Shared } from '../../services/shared';
 import { Productmaster } from '../productmaster/productmaster';
 import { Auth } from '../../services/auth';
 import { Api } from '../../services/api';
 import { Managepayment } from '../managepayment/managepayment';
+import { Listview } from '../listview/listview';
 ``;
 @Component({
   selector: 'app-churchhomepage',
-  imports: [Order, ChurchDash, Productmaster, Managepayment],
+  imports: [ChurchDash, Productmaster, Managepayment, Listview],
   templateUrl: './churchhomepage.html',
   styleUrl: './churchhomepage.css',
 })
@@ -41,8 +41,8 @@ export class Churchhomepage {
   ngOnChanges() {}
   handleNavbarAction(action: string) {
     // You can perform any logic based on the action
-    if (action === 'order') {
-      this.currentView = 'order';
+    if (action === 'listview') {
+      this.currentView = 'listview';
     }
     if (action === 'home') {
       this.currentView = 'home';

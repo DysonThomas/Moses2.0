@@ -15,7 +15,7 @@
                 <a (click)="orderClick('MP')" class="navbar-item">
                     Manage Products
                 </a>
-                <a class="navbar-item" (click)="orderClick('order')">
+                <a class="navbar-item" (click)="orderClick('listview')">
                     View Orders
                 </a>
                 <a class="navbar-item" (click)="orderClick('payment')">
@@ -62,6 +62,9 @@
                 </a>
                 <div class="navbar-dropdown">
                     @if(!isProfilePage()){
+                    <a (click)="viewOrders()" class="navbar-item">
+                        View Orders
+                    </a>
                     <a (click)="editProfile()" class="navbar-item">
                         Edit Profile
                     </a>
@@ -75,7 +78,7 @@
             <div class="navbar-item">
 
                 <div class="buttons">
-                    @if(isProfilePage()){
+                    @if(isProfilePage()||isOrderPage()){
                     <a (click)="backToHome()" class="button is-primary">
                         <strong>Home Page</strong>
                     </a>

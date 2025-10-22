@@ -117,12 +117,13 @@ export class Homepage {
       .createOrder(this.auth.getToken(), amount, currency, this.profileData.church_id)
       .subscribe({
         next: (order) => {
+          console.log('Order created successfully:', order.amount);
           const options = {
             key: order.key, // Replace with your Razorpay API key
             amount: order.amount,
             currency: order.currency,
             name: this.profileData.churchName,
-            description: 'Test Transaction',
+            description: 'Powered by Moses 2.0',
             order_id: order.id,
             handler: (response: any) => {
               console.log('Payment ID:', response.razorpay_payment_id);
@@ -132,7 +133,7 @@ export class Homepage {
               this.api
                 .addOrderDetails(this.auth.getToken(), {
                   user_id: this.profileData.user_ID,
-                  amount: order.amount,
+                  amount: order.amount / 100, // Convert to main currency unit
                   currency: order.currency,
                   status: 'paid',
                   church_id: this.profileData.church_id,
@@ -159,6 +160,7 @@ export class Homepage {
             },
             prefill: {
               name: this.profileData.user_name,
+              email: this.profileData.email ? this.profileData.email : '',
             },
             theme: {
               color: '#3399cc',
