@@ -1,3 +1,6 @@
+@if(loading){
+<app-spinner></app-spinner>
+}
 <section class="section">
     <div class="container">
         <!-- Date filter form -->
@@ -9,7 +12,7 @@
                     <div class="field">
                         <label class="label">From Date</label>
                         <div class="control">
-                            <input class="input" type="date" id="fromDate" name="fromDate">
+                            <input [(ngModel)]="fromDate" class="input" type="date" id="fromDate" name="fromDate">
                         </div>
                     </div>
                 </div>
@@ -18,7 +21,7 @@
                     <div class="field">
                         <label class="label">To Date</label>
                         <div class="control">
-                            <input class="input" type="date" id="toDate" name="toDate">
+                            <input [(ngModel)]="toDate" class="input" type="date" id="toDate" name="toDate">
                         </div>
                     </div>
                 </div>
@@ -26,14 +29,15 @@
                 <div class="column">
                     <div class="field">
                         <label class="label">Product Type</label>
+                        <!-- a info button -->
                         <div class="control">
                             <div class="select is-fullwidth">
                                 <select (change)="onChange($event)" [(ngModel)]="selectedType" id="eventType"
                                     name="eventType">
                                     <option value="0"> View All</option>
-                                    <option value="10001">Normal and Anidhe</option>
+                                    <option value="10001">Regular Items</option>
                                     @for(prod of products; track prod.product_id){
-                                    @if(prod.product_name!="Normal" && prod.product_name!="Aanidhe"){
+                                    @if(prod.isRegular==false){
                                     <option value={{prod.product_id}}>{{prod.product_name}}</option>
                                     }
                                     }
@@ -47,7 +51,8 @@
                 <div class="column is-narrow is-flex is-align-items-flex-end">
                     <div class="field">
                         <div class="control">
-                            <button class="button is-primary" type="submit">Show All</button>
+                            <button (click)="showAllProducts()" class="button is-primary" type="button">Show
+                                All</button>
                         </div>
                     </div>
                 </div>
@@ -56,7 +61,7 @@
                 <div class="column is-narrow is-flex is-align-items-flex-end">
                     <div class="field">
                         <div class="control">
-                            <button class="button is-primary" type="submit">Fetch</button>
+                            <button (click)="showSpecific()" class="button is-primary" type="submit">Fetch</button>
                         </div>
                     </div>
                 </div>
@@ -65,31 +70,48 @@
         </form>
 
 
-        <!-- <div class="card">
-            <header class="card-header">
-                <p class="card-header-title">Attendees</p>
-                <a class="card-header-icon" aria-label="more options">
+        @if (orders.length > 0) {
+        <footer class="card-footer mt-4">
+            <div class="card-footer-item has-text-left" style="justify-content: flex-end;">
+                <button (click)="exportToPDF()" class="button is-primary is-light" title="Export to PDF">
                     <span class="icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M12 6a2 2 0 110-4 2 2 0 010 4zM12 14a2 2 0 110-4 2 2 0 010 4zM12 22a2 2 0 110-4 2 2 0 010 4z"
-                                fill="currentColor" />
-                        </svg>
+                        <i class="fas fa-file-pdf"></i>
                     </span>
-                </a>
-            </header>
+                    <span>Export to PDF</span>
+                </button>
+            </div>
+        </footer>
 
+        <div id="cards-container" class="card mt-4">
             <div class="card-content">
                 <div class="content">
-                    <ul class="menu-list">
-                        <li><a>Mary Johnson</a></li>
-                        <li><a>James Smith</a></li>
-                        <li><a>Linda Williams</a></li>
-                        <li><a>Robert Brown</a></li>
-                        <li><a>Patricia Davis</a></li>
-                    </ul>
+                    <section class="section">
+                        @for (product of products; track product.product_id) {
+                        @if (
+                        selectedType == product.product_id ||
+                        selectedType == 0 ||
+                        (selectedType == 10001 && product.isRegular)
+                        ) {
+                        <h2 class="title is-4 has-text-info">{{ product.product_name }}</h2>
+                        }
+
+                        @for (order of orders; track order.id) {
+                        <div class="container">
+                            @if (product.product_id == order.type) {
+                            <ul>
+                                <li>{{ order.customer_name }}</li>
+                            </ul>
+                            }
+                        </div>
+                        }
+                        }
+                    </section>
                 </div>
             </div>
-        </div> -->
+        </div>
+        }
+
     </div>
+
+
 </section>

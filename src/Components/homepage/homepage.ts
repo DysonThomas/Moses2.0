@@ -56,6 +56,7 @@ export class Homepage {
         this.api.getProductsByChurchId(token, this.profileData.church_id).subscribe({
           next: (productRes) => {
             this.products = productRes;
+            console.log('Fetched Products:', this.products);
           },
           error: (err) => {},
         });
@@ -92,11 +93,13 @@ export class Homepage {
   addItem() {
     if (this.selectedType && this.name) {
       this.Myproducts.push({ type: this.selectedType, name: this.name });
+      console.log('My Products:', this.Myproducts);
+      console.log('All Products:', this.products);
       // Clear the form fields
       this.selectedType = '';
       this.name = '';
       this.Myproducts = this.Myproducts.map((mp) => {
-        const matched = this.products.find((p) => p.id == mp.type);
+        const matched = this.products.find((p) => p.product_id == mp.type);
         return {
           ...mp,
           id: Date.now() + Math.floor(Math.random() * 10000), // Unique ID for tracking

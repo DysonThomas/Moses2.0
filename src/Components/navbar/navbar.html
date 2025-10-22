@@ -15,9 +15,23 @@
                 <a (click)="orderClick('MP')" class="navbar-item">
                     Manage Products
                 </a>
-                <a class="navbar-item" (click)="orderClick('listview')">
-                    View Orders
-                </a>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        Orders
+                    </a>
+
+                    <div class="navbar-dropdown">
+                        <a (click)="orderClick('listview')" class="navbar-item">
+                            View Pending Orders
+                        </a>
+                        <hr class="navbar-divider">
+                        <a class="navbar-item">
+                            View All Orders
+                        </a>
+
+                    </div>
+                </div>
+
                 <a class="navbar-item" (click)="orderClick('payment')">
                     Manage Payment
                 </a>

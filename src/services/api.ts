@@ -114,10 +114,13 @@ export class Api {
   getAllProducts(): Observable<any> {
     return this.http.get(`${this.apiUrl}getallproducts`, {});
   }
+  getProducts(): Observable<any> {
+    return this.http.get(`${this.apiUrl}getproducts`, {});
+  }
   // add neew product on to product table based on church id
   addNewProduct(
     token: string,
-    productData: { church_id: string; product_id: number; price: number }
+    productData: { church_id: string; product_id: number; price: number; isRegular: boolean }
   ): Observable<any> {
     console.log('Adding new product with data:', productData);
     const headers = new HttpHeaders({
@@ -183,5 +186,34 @@ export class Api {
       Authorization: `Bearer ${token}`,
     });
     return this.http.get(`${this.apiUrl}getuserorders/${user_id}`, { headers });
+  }
+  // getorder by checking church id and date between 2 dates post as data
+  getallOrder(token: string, church_id: string, fromDate: string, toDate: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.post(
+      `${this.apiUrl}getchurchorders`,
+      { church_id, fromDate, toDate },
+      { headers }
+    );
+  }
+  getspecificorder(
+    token: string,
+    church_id: string,
+    fromDate: string,
+    toDate: string,
+    pType: number | string[]
+  ): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.post(
+      `${this.apiUrl}getspecificorders`,
+      { church_id, fromDate, toDate, pType },
+      { headers }
+    );
   }
 }

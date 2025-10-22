@@ -19,7 +19,7 @@
                 <select id="type" name="type" [(ngModel)]="selectedType" required>
                     <option value="">-- Please choose a type --</option>
                     @for (product of products; track product.id) {
-                    <option [value]="product.id">{{ product.product_name }} ₹{{product.price}}</option>
+                    <option [value]="product.product_id">{{ product.product_name }} ₹{{product.price}}</option>
                     }
                 </select>
             </div>

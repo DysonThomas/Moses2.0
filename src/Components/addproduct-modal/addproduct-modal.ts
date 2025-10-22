@@ -13,6 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class AddproductModal {
   @Output() close = new EventEmitter<void>();
   isLoading: boolean = false;
+  isRegular: boolean = false;
   products: any[] = [];
   amount: number | null = null;
   prodID: number | null = null;
@@ -34,12 +35,14 @@ export class AddproductModal {
     console.log('AddproductModal initialized with churchId:', this.activeProducts);
   }
   Save() {
+    console.log(this.isRegular);
     if (this.prodID != null && this.amount != null) {
       this.api
         .addNewProduct(this.auth.getToken(), {
           church_id: this.churchId,
           product_id: this.prodID ?? 0,
           price: this.amount ?? 0,
+          isRegular: this.isRegular,
         })
         .subscribe((response) => {
           console.log(response);
