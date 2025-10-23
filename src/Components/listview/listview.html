@@ -1,6 +1,7 @@
 @if(loading){
 <app-spinner></app-spinner>
 }
+@else{
 <section class="section">
     <div class="container">
         <!-- Date filter form -->
@@ -71,6 +72,7 @@
 
 
         @if (orders.length > 0) {
+        @if(selectedType!=0){
         <footer class="card-footer mt-4">
             <div class="card-footer-item has-text-left" style="justify-content: flex-end;">
                 <button (click)="exportToPDF()" class="button is-primary is-light" title="Export to PDF">
@@ -81,12 +83,13 @@
                 </button>
             </div>
         </footer>
+        }
 
         <div id="cards-container" class="card mt-4">
             <div class="card-content">
                 <div class="content">
                     <section class="section">
-                        @for (product of products; track product.product_id) {
+                        @for (product of products; track trackByIndex($index)) {
                         @if (
                         selectedType == product.product_id ||
                         selectedType == 0 ||
@@ -95,13 +98,14 @@
                         <h2 class="title is-4 has-text-info">{{ product.product_name }}</h2>
                         }
 
-                        @for (order of orders; track order.id) {
+                        @for (order of orders;track trackByIndex($index)) {
                         <div class="container">
-                            @if (product.product_id == order.type) {
+                            @if (product.product_id == order.type && order.status != 'read') {
                             <ul>
                                 <li>{{ order.customer_name }}</li>
                             </ul>
                             }
+
                         </div>
                         }
                         }
@@ -115,3 +119,4 @@
 
 
 </section>
+}

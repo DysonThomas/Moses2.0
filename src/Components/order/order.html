@@ -9,7 +9,7 @@
                 </p>
                 <div class="card-header-icon order-meta" aria-label="order status and date" style="padding-right:1rem;">
                     <!-- status tags: use is-success / is-warning / is-danger / is-info as needed -->
-                    <span class="tag is-success">{{order.status}}</span>
+
                     <span class="tag is-light">Placed: {{order.created_at | date:'short'}}</span>
                 </div>
             </header>
@@ -34,7 +34,16 @@
                                     </p>
                                 </div>
                                 <div class="media-right has-text-right">
+
                                     <p class="is-size-6 has-text-weight-semibold">${{product.price}}</p>
+                                    @if(product.status=='read'){
+                                    <span class="tag is-success mt-3">Read</span>
+                                    }
+                                    @else if((product.status==null)){
+                                    <span class="tag is-warning mt-3">Pending</span>
+                                    }
+
+
                                 </div>
                             </div>
                         </div>

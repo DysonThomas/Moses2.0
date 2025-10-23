@@ -210,10 +210,24 @@ export class Api {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     });
+    console.log(token, church_id, fromDate, toDate, pType);
     return this.http.post(
       `${this.apiUrl}getspecificorders`,
       { church_id, fromDate, toDate, pType },
       { headers }
     );
+  }
+  updateOrderStatus(
+    type: number,
+    fromDate: string,
+    toDate: string,
+    newStatus: string
+  ): Observable<any> {
+    return this.http.post(`${this.apiUrl}updateProductStatusByType/`, {
+      type,
+      fromDate,
+      toDate,
+      newStatus,
+    });
   }
 }

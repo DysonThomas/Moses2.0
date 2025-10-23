@@ -59,6 +59,7 @@ export class Listview {
     }
   }
   showSpecific() {
+    this.orders = [];
     if (this.fromDate === '' || this.toDate === '') {
       alert('Please select both From Date and To Date.');
       return;
@@ -144,7 +145,30 @@ export class Listview {
       const fileName = `orders_${fileTimestamp}.pdf`;
 
       pdf.save(fileName);
+      this.updateStatusAfterExport();
     });
+  }
+  updateStatusAfterExport() {
+    if (this.selectedType == 10001) {
+      this.regularItemsIds.forEach((id) => {
+        console.log('Updating status for product ID:', id);
+        this.api.updateOrderStatus(id, this.fromDate, this.toDate, 'read').subscribe((res: any) => {
+          console.log(`Order status updated for product ID ${id}:`, res);
+          console.log(this.orders);
+          this.orders = [];
+        });
+      });
+    } else {
+      this.api
+        .updateOrderStatus(this.selectedType, this.fromDate, this.toDate, 'read')
+        .subscribe((res: any) => {
+          this.loading = false;
+          console.log('Order statuses updated after export:', res);
+        });
+    }
     this.loading = false;
+  }
+  trackByIndex(index: number): number {
+    return index;
   }
 }
